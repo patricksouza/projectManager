@@ -3,17 +3,30 @@
 module.exports = {
 
   development: {
-    client: 'sqlite3',
+    client: 'postgresql',
     connection: {
-      filename: './dev.sqlite3'
-    }
+      host: 'localhost',
+      user: 'postgres',
+      password: 'root',
+      database: 'project_db',
+      timezone: 'UTC',
+      dateStrings: true
+    },
+    pool: {
+      min: 2,
+      max: 10
+    },
+    migrations: {
+      directory: __dirname + '/src/database/migrations'
+    },
+    useNullAsDefault: true
   },
 
   staging: {
     client: 'postgresql',
     connection: {
       database: 'my_db',
-      user:     'username',
+      user: 'username',
       password: 'password'
     },
     pool: {
@@ -29,7 +42,7 @@ module.exports = {
     client: 'postgresql',
     connection: {
       database: 'my_db',
-      user:     'username',
+      user: 'username',
       password: 'password'
     },
     pool: {
