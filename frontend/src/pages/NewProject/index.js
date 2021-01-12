@@ -34,17 +34,17 @@ export default function NewProjet() {
     try {
       await api.post('/project/new', dataInputs);
       swal({
-        title: "Projeto cadastrado",
-        text: "Estamos voltando para a tela inicial.",
-        icon: "success",
+        title: 'Projeto cadastrado',
+        text: 'Estamos voltando para a tela inicial.',
+        icon: 'success',
       }).then(() => {
         history.push('/');
       });
     } catch (err) {
       swal({
-        title: "Erro ao cadastrar o projeto",
-        text: "Por favor, tente novamente!",
-        icon: "warning",
+        title: 'Erro ao cadastrar o projeto',
+        text: 'Por favor, tente novamente!',
+        icon: 'warning',
       });
       return err;
     }
@@ -78,26 +78,31 @@ export default function NewProjet() {
         <form className=''>
           <div className='form-row'>
             <div className='col mb-3'>
-              <label htmlFor=''>Nome do projeto</label>
-              <input
-                className='form-control'
-                type='text'
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required={true}
-              />
+              <div className='form-group'>
+                <label htmlFor=''>Nome do projeto</label>
+                <input
+                  className='form-control'
+                  type='text'
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required={true}
+                />
+              </div>
             </div>
           </div>
           <div className='form-row'>
             <div className='col-md-6 mb-3'>
-              <label htmlFor=''>Data de início</label>
-              <input
-                className='form-control'
-                type='date'
-                value={start_date}
-                onChange={(e) => setstart_date(e.target.value)}
-                required={true}
-              />
+              <div className='form-group'>
+                <label htmlFor=''>Data de início</label>
+                <input
+                  className='form-control'
+                  type='date'
+                  value={start_date}
+                  onChange={(e) => setstart_date(e.target.value)}
+                  required={true}
+                />
+              </div>
+
             </div>
             <div className='col-md-6 mb-3'>
               <label htmlFor=''>Data final</label>
@@ -113,47 +118,53 @@ export default function NewProjet() {
           <hr />
           <div className='form-row'>
             <div className='col-md-4 mb-3'>
-              <label htmlFor=''>Valor do investimento</label>
-              <input
-                className='form-control'
-                type='number'
-                value={budget}
-                onChange={(e) => setBudget(e.target.value)}
-                required={true}
-              />
+              <div className='form-group'>
+                <label htmlFor=''>Valor do investimento</label>
+                <input
+                  className='form-control'
+                  type='number'
+                  value={budget}
+                  onChange={(e) => setBudget(e.target.value)}
+                  required={true}
+                />
+              </div>
             </div>
             <div className='col-md-8 mb-3'>
-              <label htmlFor=''>Risco do projeto</label>
-              <select
-                className='form-control'
-                type='text'
-                value={project_risk}
-                onChange={(e) => setproject_risk(e.target.value)}
-                required={true}
-              >
-                <option defaultValue='DEFAULT'></option>
-                <option value='0'>Baixo</option>
-                <option value='1'>Médio</option>
-                <option value='2'>Alto</option>
-              </select>
+              <div className='form-group'>
+                <label htmlFor=''>Risco do projeto</label>
+                <select
+                  className='form-control'
+                  type='text'
+                  value={project_risk}
+                  onChange={(e) => setproject_risk(e.target.value)}
+                  required={true}>
+                  <option defaultValue='DEFAULT'></option>
+                  <option value='0'>Baixo</option>
+                  <option value='1'>Médio</option>
+                  <option value='2'>Alto</option>
+                </select>
+              </div>
             </div>
 
           </div>
-          <div className="form-row">
+          <div className='form-row'>
 
             <div className='col mb-3'>
-              <label htmlFor=''>Participantes</label>
-              <input
-                className='form-control'
-                type='text'
-                onDoubleClick={(e) => setParticipants(participants.concat(e.target.value))}
-                required={true}
-              />
+              <div className='form-group'>
+                <label htmlFor=''>Participantes</label>
+                <input
+                  className='form-control'
+                  type='text'
+                  onDoubleClick={(e) => setParticipants(participants.concat(e.target.value))}
+                  required={true}
+                />
+                <small className='form-text text-muted'>Dê dois cliques para adicionar um participante.</small>
+              </div>
             </div>
-            {participants.length <= 0 ? '' : <div className="col mb-3 py-4">
-              <ul className="list-group">
+            {participants.length <= 0 ? '' : <div className='col mb-3 py-4'>
+              <ul className='list-group'>
                 {participants.map((item, key) => (
-                  <li className="list-group-item" key={key}>{item}</li>
+                  <li className='list-group-item' key={key}>{item}</li>
                 ))}
               </ul>
             </div>}
