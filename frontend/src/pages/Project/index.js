@@ -9,7 +9,7 @@ import logo from '../../assets/fpf-logo.svg';
 
 import api from '../../services/api';
 
-export default function NewProjet() {
+export default function Project() {
   const [name, setName] = useState('');
   const [start_date, setstart_date] = useState('');
   const [finish_date, setfinish_date] = useState('');

@@ -53,7 +53,7 @@ export default function Home() {
             </div>
             <div className="container py-2">
                 <div className="table-responsive">
-                    <table className="table table-striped shadow">
+                    <table className="table table-hover shadow">
                         <thead>
                             <tr>
                                 <th scope="col">Projeto</th>
@@ -70,16 +70,18 @@ export default function Home() {
                                     <td>{item.name}</td>
                                     <td>{item.start_date}</td>
                                     <td>{item.finish_date}</td>
-                                    <td>{item.budget}</td>
+                                    <td>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(item.budget)}</td>
                                     <td>{Array.from(array[key]['participants']).map((item, key, array) => (
-                                        <span key={key}><p>
+                                        <span key={key}><p className="item-list">
                                             {item}</p></span>
                                     ))}</td>
                                     <td>
-                                        <Link className="btn btn-outline-secondary mx-2" to="/edit">
+
+                                        <Link className="btn btn-outline-secondary mb-4 mx-2" to="/edit">
                                             <FaRegEdit />
                                         </Link>
-                                        <button className="btn btn-outline-danger" onClick={() => {
+
+                                        <button className="btn btn-outline-danger mb-4" onClick={() => {
                                             swal({
                                                 title: "Deletar projeto?",
                                                 text: "",
@@ -95,7 +97,7 @@ export default function Home() {
                                                         handleDelete(item.id)
                                                     }
                                                     else {
-                                                        swal("Falha ao tentar deletar o projeto", {
+                                                        swal("Projeto não deletado", {
                                                             icon: "warning",
                                                         });
                                                     }
