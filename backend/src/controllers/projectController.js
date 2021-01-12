@@ -2,8 +2,10 @@ const connection = require('../database/connection');
 
 
 module.exports ={
-    async index(request,response){
-
+    async index(request, response) {
+        const project = await connection('project')
+            .select('*');
+        return response.json(project);
     },
     async create(request,response){
 
