@@ -124,6 +124,7 @@ export default function Project() {
                 <input
                   className='form-control'
                   type='number'
+                  min='0'
                   value={budget}
                   onChange={(e) => setBudget(e.target.value)}
                   required={true}
@@ -139,7 +140,7 @@ export default function Project() {
                   value={project_risk}
                   onChange={(e) => setproject_risk(e.target.value)}
                   required={true}>
-                  <option defaultValue='DEFAULT'></option>
+                  <option></option>
                   <option value='0'>Baixo</option>
                   <option value='1'>Médio</option>
                   <option value='2'>Alto</option>
