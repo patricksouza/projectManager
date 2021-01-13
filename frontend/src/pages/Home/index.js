@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { FaEdit, FaTrashAlt, FaCheck, FaUndoAlt } from "react-icons/fa";
+import { FaEdit, FaTrashAlt, FaCheck, FaUndoAlt,FaDollarSign } from "react-icons/fa";
 import swal from "sweetalert";
 
 import logo from "../../assets/fpf-logo.svg";
@@ -137,7 +137,7 @@ export default function Home() {
                                             <input
                                                 className="form-control"
                                                 type="text"
-                                                value={newName === '' ? item.name : newName}
+                                                value={newName}
                                                 onChange={(e) => setNewName(e.target.value)}
                                                 required={true}
                                             />
@@ -146,13 +146,13 @@ export default function Home() {
                                             )}
                                     </td>
                                     <td>
-                                        {" "}
+
                                         {editMode.status && editMode.rowKey === item.id ? (
                                             <input
                                                 className="form-control"
                                                 type="date"
                                                 value={newStartDate}
-                                                onChange={(e) => setNewStartDate(e.target.value)}
+                                                onChange={(e) => setNewStartDate(e.target.value === null ? item.start_date : newStartDate)}
                                                 required={true}
                                             />
                                         ) : (
@@ -227,14 +227,14 @@ export default function Home() {
 
                                     </td>
                                     <td>
-                                        <div className="row d-flex justify-content-between">
-                                            <div className="col mb-2">
+                                        <div className="">
+                                            <div className="mb-2">
                                                 {editMode.status && editMode.rowKey === item.id ? (
                                                     <React.Fragment>
-                                                        <div className="row">
-                                                            <div className="col-md-5">
+                                                        <div className="row d-flex justify-content-between">
+                                                            <div className="col-1 mx-0 px-0">
                                                                 <button
-                                                                    className="btn btn-success"
+                                                                    className="btn btn-sm btn-success"
                                                                     onClick={() =>
                                                                         onSaveEdit({
                                                                             id: item.id,
@@ -250,9 +250,9 @@ export default function Home() {
                                                                     <FaCheck />
                                                                 </button>
                                                             </div>
-                                                            <div className="col-md-5">
+                                                            <div className="col-9 mx-0 px-0">
                                                                 <button
-                                                                    className="btn btn-secondary"
+                                                                    className="btn btn-sm btn-secondary"
                                                                     style={{ marginLeft: 8 }}
                                                                     onClick={() => onCancelEdit()}
                                                                 >
@@ -263,7 +263,7 @@ export default function Home() {
                                                     </React.Fragment>
                                                 ) : (
                                                         <button
-                                                            className="btn btn-secondary"
+                                                            className="btn btn-sm btn-secondary"
                                                             onClick={() =>
                                                                 onEdit({
                                                                     id: item.id
@@ -274,9 +274,9 @@ export default function Home() {
                                                         </button>
                                                     )}
                                             </div>
-                                            <div className="col">
+                                            <div className="mb-2">
                                                 <button
-                                                    className="btn btn-danger"
+                                                    className="btn btn-sm btn-danger"
                                                     onClick={() => {
                                                         swal({
                                                             title: "Deletar projeto?",
@@ -301,6 +301,9 @@ export default function Home() {
                                                 >
                                                     <FaTrashAlt />
                                                 </button>
+                                            </div>
+                                            <div className="">
+                                                <button className="btn btn-sm btn-success"><FaDollarSign/></button>
                                             </div>
                                         </div>
                                     </td>
