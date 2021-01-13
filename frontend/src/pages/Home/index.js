@@ -28,7 +28,7 @@ export default function Home() {
         rowKey: null,
     });
 
-    const onEdit = ({ id, currentName }) => {
+    const onEdit = ({ id }) => {
         setEditMode({
             status: true,
             rowKey: id,
@@ -63,6 +63,10 @@ export default function Home() {
 
     const onSaveEdit = ({ id, name, start_date, finish_date, budget, project_risk, participants }) => {
         updateProject({ id, name, start_date, finish_date, budget, project_risk, participants });
+        setEditMode({
+            status: false,
+            rowKey: null
+        })
     };
 
     const fetchApiData = () => {
@@ -119,8 +123,8 @@ export default function Home() {
                         <thead>
                             <tr>
                                 <th scope="col">Projeto</th>
-                                <th scope="col">Data do início</th>
-                                <th scope="col">Data do término</th>
+                                <th scope="col">Data início</th>
+                                <th scope="col">Data final</th>
                                 <th scope="col">Investimento</th>
                                 <th scope="col">Risco</th>
                                 <th scope="col">Participantes</th>
@@ -150,7 +154,7 @@ export default function Home() {
                                                 className="form-control"
                                                 type="date"
                                                 value={newStartDate}
-                                                onChange={(e) => setNewStartDate(e.target.value === null ? item.start_date : newStartDate)}
+                                                onChange={(e) => setNewStartDate(e.target.value)}
                                                 required={true}
                                             />
                                         ) : (
@@ -186,7 +190,7 @@ export default function Home() {
                                         }).format(item.budget)}
                                     </td>
 
-                                    <td>
+                                    <td width={150}>
                                         {editMode.status && editMode.rowKey === item.id ? (
                                             <select
                                                 className='form-control'
@@ -205,24 +209,25 @@ export default function Home() {
                                     </td>
                                     <td>
                                         {editMode.status && editMode.rowKey === item.id ? (
-                                            <input
-                                                className="form-control"
-                                                type="text"
-                                                onDoubleClick={(e) => setNewParticipants(newParticipants.concat(...item.participants, e.target.value))}
-                                                required={true}
-                                            />
-                                        ) : ''
-                                        }
-                                        <div className="py-2">
-                                            {Array.from(array[key]["participants"]).map(
-                                                (item, key, array) => (
-                                                    <span key={key}>
-                                                        <p className="btn btn-sm btn-outline-secondary disabled mx-1">{item}</p>
-                                                    </span>
-                                                )
-                                            )}
-                                        </div>
+                                            <>
+                                                <input
+                                                    className="form-control"
+                                                    type="text"
+                                                    onDoubleClick={(e) => { setNewParticipants(newParticipants.concat(...item.participants, e.target.value)) }}
+                                                    required={true} />
+                                                <small className='form-text text-muted'>Dê dois cliques para adicionar um participante.</small>
+                                            </>
 
+                                        ) : <div className="py-2">
+                                                {item.participants.map(
+                                                    (item, key) => (
+                                                        <span key={key}>
+                                                            <p className="btn btn-sm btn-outline-secondary disabled mx-1">{item}</p>
+                                                        </span>
+                                                    )
+                                                )}
+                                            </div>
+                                        }
                                     </td>
                                     <td>
                                         <div className="">
@@ -236,13 +241,14 @@ export default function Home() {
                                                                     onClick={() =>
                                                                         onSaveEdit({
                                                                             id: item.id,
-                                                                            name: newName,
-                                                                            start_date: newStartDate,
-                                                                            finish_date: newFinishDate,
-                                                                            budget: newBudget,
-                                                                            project_risk: newProjectRisk,
-                                                                            participants: newParticipants
+                                                                            name: newName === '' ? item.name : newName,
+                                                                            start_date: newStartDate === '' ? item.start_date : newStartDate,
+                                                                            finish_date: newFinishDate === '' ? item.finish_date : newFinishDate,
+                                                                            budget: newBudget === '' ? item.budget : newBudget,
+                                                                            project_risk: newProjectRisk === '' ? item.project_risk : newProjectRisk,
+                                                                            participants: newParticipants.length === 0 ? item.participants : newParticipants
                                                                         })
+
                                                                     }
                                                                 >
                                                                     <FaCheck />
