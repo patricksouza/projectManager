@@ -8,6 +8,7 @@ import './style.css';
 import logo from '../../assets/fpf-logo.svg';
 
 import api from '../../services/api';
+import { FaArrowLeft } from 'react-icons/fa';
 
 export default function Project() {
   const [name, setName] = useState('');
@@ -71,7 +72,7 @@ export default function Project() {
         </nav>
       </div>
       <div className='container py-4'>
-        <Link className='btn btn-sm btn-secondary' to='/'>Voltar</Link>
+        <Link className='btn btn-sm btn-secondary' to='/'><FaArrowLeft/> Voltar</Link>
       </div>
       <div className='container'>
 

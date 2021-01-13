@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { FaEdit, FaTrashAlt, FaCheck, FaUndoAlt,FaDollarSign } from "react-icons/fa";
+import { FaEdit, FaTrashAlt, FaCheck, FaUndoAlt, FaDollarSign, FaPlus } from "react-icons/fa";
 import swal from "sweetalert";
 
 import logo from "../../assets/fpf-logo.svg";
@@ -108,10 +108,8 @@ export default function Home() {
             </div>
             <div className="container py-4">
                 <div className="row d-flex justify-content-start">
-                    <div className="col-0">
-                        <Link className="btn btn-sm btn-success" to="/new">
-                            Novo projeto
-            </Link>
+                    <div className="col-2">
+                        <Link className="btn btn-sm btn-success " to="/new"><FaPlus /> Projeto</Link>
                     </div>
                 </div>
             </div>
@@ -242,7 +240,7 @@ export default function Home() {
                                                                             start_date: newStartDate,
                                                                             finish_date: newFinishDate,
                                                                             budget: newBudget,
-                                                                            project_risk:newProjectRisk,
+                                                                            project_risk: newProjectRisk,
                                                                             participants: newParticipants
                                                                         })
                                                                     }
@@ -275,6 +273,9 @@ export default function Home() {
                                                     )}
                                             </div>
                                             <div className="mb-2">
+                                                <button className="btn btn-sm btn-success"><FaDollarSign /></button>
+                                            </div>
+                                            <div className="">
                                                 <button
                                                     className="btn btn-sm btn-danger"
                                                     onClick={() => {
@@ -301,9 +302,6 @@ export default function Home() {
                                                 >
                                                     <FaTrashAlt />
                                                 </button>
-                                            </div>
-                                            <div className="">
-                                                <button className="btn btn-sm btn-success"><FaDollarSign/></button>
                                             </div>
                                         </div>
                                     </td>
