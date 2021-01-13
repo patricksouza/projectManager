@@ -72,7 +72,7 @@ module.exports = {
             participants
         } = request.body;
         try {
-            const project = await connection('project')
+            await connection('project')
                 .where('id', id)
                 .update({
                     name,
