@@ -71,22 +71,23 @@ module.exports = {
             project_risk,
             participants
         } = request.body;
-        try {
-            await connection('project')
-                .where('id', id)
-                .update({
-                    name,
-                    start_date,
-                    finish_date,
-                    budget,
-                    project_risk,
-                    participants
-                });
-            return response.json('updated');
-        } catch (err) {
-            console.log(err);
-            return response.json(err.name);
-        }
+        console.log(request.body);
+        // try {
+        //     await connection('project')
+        //         .where('id', id)
+        //         .update({
+        //             name,
+        //             start_date,
+        //             finish_date,
+        //             budget,
+        //             project_risk,
+        //             participants
+        //         });
+        //     return response.json('updated');
+        // } catch (err) {
+        //     console.log(err);
+        //     return response.json(err.name);
+        // }
     },
 
     async delete(request, response) {
