@@ -4,23 +4,37 @@ module.exports = {
     async index(request, response) {
         const data = await connection('project')
             .select('*');
-        
-        
-        var project = data.map((item,key,array)=>{
+
+
+        var project = data.map((item, key, array) => {
             let s_date = new Date(item.start_date);
-            var start_date = ((s_date.getDate() )) + "/" + ((s_date.getMonth() + 1)) + "/" + s_date.getFullYear();
+            var start_date = ((s_date.getDate())) + "/" + ((s_date.getMonth() + 1)) + "/" + s_date.getFullYear();
 
             let f_date = new Date(item.finish_date);
-            var finish_date = ((f_date.getDate() )) + "/" + ((f_date.getMonth() + 1)) + "/" + f_date.getFullYear();
+            var finish_date = ((f_date.getDate())) + "/" + ((f_date.getMonth() + 1)) + "/" + f_date.getFullYear();
+
+            var project_risk = '';
+
+            switch (item.project_risk) {
+                case 0:
+                    project_risk = 'Baixo';
+                    break;
+                case 1:
+                    project_risk = 'Médio';
+                    break;
+                case 2:
+                    project_risk = 'Alto';
+                    break;
+            }
 
             return {
-                id:item.id,
-                name:item.name,
+                id: item.id,
+                name: item.name,
                 start_date: start_date,
-                finish_date:finish_date,
-                budget:item.budget,
-                project_risk:item.project_risk,
-                participants:item.participants
+                finish_date: finish_date,
+                budget: item.budget,
+                project_risk: project_risk,
+                participants: item.participants
             }
         });
         return response.json(project);
@@ -48,12 +62,26 @@ module.exports = {
     },
 
     async update(request, response) {
-        const { id, data } = request.params;
-
+        const {
+            id,
+            name,
+            start_date,
+            finish_date,
+            budget,
+            project_risk,
+            participants
+        } = request.body;
         try {
             const project = await connection('project')
                 .where('id', id)
-                .update(data);
+                .update({
+                    name,
+                    start_date,
+                    finish_date,
+                    budget,
+                    project_risk,
+                    participants
+                });
             return response.json('updated');
         } catch (err) {
             console.log(err);
