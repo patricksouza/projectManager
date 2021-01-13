@@ -14,19 +14,22 @@ module.exports = {
             var finish_date = ((f_date.getDate())) + "/" + ((f_date.getMonth() + 1)) + "/" + f_date.getFullYear();
 
             var project_risk = '';
+            var project_risk_perc = null;
 
             switch (item.project_risk) {
                 case 0:
                     project_risk = 'Baixo';
+                    project_risk_perc = 0.05;
                     break;
                 case 1:
                     project_risk = 'Médio';
+                    project_risk_perc = 0.1;
                     break;
                 case 2:
                     project_risk = 'Alto';
+                    project_risk_perc = 0.2;
                     break;
             }
-
             return {
                 id: item.id,
                 name: item.name,
@@ -34,6 +37,7 @@ module.exports = {
                 finish_date: finish_date,
                 budget: item.budget,
                 project_risk: project_risk,
+                project_risk_perc: project_risk_perc,
                 participants: item.participants
             }
         });
@@ -68,9 +72,20 @@ module.exports = {
             start_date,
             finish_date,
             budget,
-            project_risk,
+            projectRisk,
             participants
         } = request.body;
+
+        var project_risk = 0;
+        if (projectRisk == 'Baixo') {
+            project_risk = 0;
+        }
+        else if (projectRisk == 'Médio') {
+            project_risk = 1;
+        }
+        else if (projectRisk == 'Alto') {
+            project_risk = 2;
+        }
         try {
             const res = await connection('project')
                 .where('id', id)
