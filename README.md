@@ -38,7 +38,7 @@ $ npm i ou npm install
 ### Execute a aplicação
 $ npm start
 
-## A aplicação iniciará na porta:3000 - acesse <http:localhost:3000>
+## A aplicação iniciará na porta:3000 - acesse <http://localhost:3000>
 
 # Backend
 
@@ -59,9 +59,6 @@ $ npm run migrate
 $ npm start
 
 ## A api iniciará na porta:3333 - acesse <http://localhost:3333>
-
-
-
 
 
 ## Telas do projeto
