@@ -137,7 +137,7 @@ export default function Home() {
                         <div className="container">
                             <form className="form-inline" onSubmit={handleCalc}>
                                 <div className="form-group mb-2">
-                                    <label className="sr-only">Informe um valor de investimento: </label>
+                                    <label className="">Informe um valor de investimento: </label>
                                 </div>
                                 <div className="form-group mx-sm-3 mb-2">
                                     <input
@@ -360,7 +360,7 @@ export default function Home() {
                                                     await CustomDialog(
                                                         <CustomDialogContent projetSelected={item.name} budgetSelected={item.budget} projectRiskPerc={item.project_risk_perc} />,
                                                         {
-                                                            title: 'Simular R.I',
+                                                            title: 'Simular ROI',
                                                             showCloseIcon: true,
                                                         }
                                                     );
