@@ -30,7 +30,6 @@ export default function Project() {
       project_risk,
       participants,
     };
-    console.log(dataInputs);
     try {
       await api.post("/project/new", dataInputs);
       swal({

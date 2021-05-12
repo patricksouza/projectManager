@@ -76,10 +76,8 @@ export default function Home() {
         participants,
       })
       .then((response) => {
-        console.log(response);
       })
       .catch((err) => {
-        console.log(err);
       });
   };
 
@@ -92,7 +90,6 @@ export default function Home() {
     projectRisk,
     participants,
   }) => {
-    console.log(newParticipants.length);
     updateProject({
       id,
       name,
@@ -116,7 +113,6 @@ export default function Home() {
         setProjects(response.data);
       })
       .catch((err) => {
-        console.log(err);
       });
   };
 
@@ -140,12 +136,10 @@ export default function Home() {
 
     async function handleCalc(e) {
       e.preventDefault();
-      console.log(value, projectRiskPerc);
       var value_float = parseFloat(value);
       var perc = parseFloat(projectRiskPerc);
 
       var return_value = value_float - value_float * perc;
-      console.log(return_value, typeof return_value);
       setValueCalculated(return_value);
     }
 
@@ -428,7 +422,6 @@ export default function Home() {
                         <button
                           className="btn btn-sm btn-success"
                           onClick={async () => {
-                            console.log(item.project_risk_perc);
                             await CustomDialog(
                               <CustomDialogContent
                                 projetSelected={item.name}
