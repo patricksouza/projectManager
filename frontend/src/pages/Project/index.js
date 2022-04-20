@@ -167,8 +167,10 @@ export default function Project() {
                 <input
                   className="form-control"
                   type="text"
-                  onDoubleClick={(e) =>
-                    setParticipants(participants.concat(e.target.value))
+                  onDoubleClick={(e) => {
+                    if (e.target.value !== "" && participants.includes(e.target.value) === false) {
+                      setParticipants([...participants, e.target.value]);
+                    }}
                   }
                   required={true}
                 />
