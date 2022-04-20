@@ -4,7 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import swal from "sweetalert";
 import "./style.css";
 
-import logo from "../../assets/fpf-logo.svg";
+//import logo from "../../assets/fpf-logo.svg";
 
 import api from "../../services/api";
 import { FaArrowLeft } from "react-icons/fa";
@@ -55,13 +55,13 @@ export default function Project() {
         <nav className="navbar navbar-light bg-light shadow">
           <div className="row d-flex justify-content-between">
             <div className="col-10">
-              <img
+             {/** <img
                 src={logo}
                 width="120"
                 className="d-inline-block align-top"
                 alt=""
                 loading="lazy"
-              />
+              /> */}
             </div>
             <div className="col">
               <h6 className="text-uppercase text-secondary">
@@ -141,7 +141,7 @@ export default function Project() {
                   onChange={(e) => setproject_risk(e.target.value)}
                   required={true}
                 >
-                  <option></option>
+                  <option defaultValue="DEFAULT">Selecione um nível</option>
                   <option value="0">Baixo</option>
                   <option value="1">Médio</option>
                   <option value="2">Alto</option>

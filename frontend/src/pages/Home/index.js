@@ -12,7 +12,7 @@ import {
 } from "react-icons/fa";
 import swal from "sweetalert";
 
-import logo from "../../assets/fpf-logo.svg";
+//import logo from "../../assets/fpf-logo.svg";
 import "./style.css";
 
 import api from "../../services/api";
@@ -21,8 +21,8 @@ import axios from "axios";
 
 export default function Home() {
   //URL used in axios requests
-  const URL_API_GETDATA = "http://localhost:3333/project";
-  const URL_API_UPDATEDATA = "http://localhost:3333/project/update";
+  const URL_API_GETDATA = "http://localhost:3334/project";
+  const URL_API_UPDATEDATA = "http://localhost:3334/project/update";
 
   //Data via get
   const [projects, setProjects] = useState([]);
@@ -211,13 +211,14 @@ export default function Home() {
         <nav className="navbar shadow">
           <div className="row d-flex justify-content-between">
             <div className="col-10">
+              {/** 
               <img
                 src={logo}
                 width="120"
                 className="d-inline-block align-top"
                 alt=""
                 loading="lazy"
-              />
+              />*/}
             </div>
             <div className="col">
               <h6 className="text-uppercase text-secondary">
@@ -258,7 +259,7 @@ export default function Home() {
                       <input
                         className="form-control"
                         type="text"
-                        value={newName}
+                        value={newName === "" ? item.name : ""}
                         onChange={(e) => setNewName(e.target.value)}
                         required={true}
                       />
@@ -271,7 +272,7 @@ export default function Home() {
                       <input
                         className="form-control"
                         type="date"
-                        value={newStartDate}
+                        value={item.start_date_unformated}
                         onChange={(e) => setNewStartDate(e.target.value)}
                         required={true}
                       />
@@ -284,7 +285,7 @@ export default function Home() {
                       <input
                         className="form-control"
                         type="date"
-                        value={newFinishDate}
+                        value="2022-04-28"
                         onChange={(e) => setNewFinishDate(e.target.value)}
                         required={true}
                       />
@@ -310,16 +311,16 @@ export default function Home() {
                     )}
                   </td>
 
-                  <td width={150}>
+                  <td width={160}>
                     {editMode.status && editMode.rowKey === item.id ? (
                       <select
                         className="form-control"
                         type="text"
-                        value={newProjectRisk}
+                        value={item.project_risk}
                         onChange={(e) => setNewProjectRisk(e.target.value)}
                         required={true}
                       >
-                        <option defaultValue="DEFAULT"></option>
+                        <option defaultValue="DEFAULT">Selecione um nível</option>
                         <option value="Baixo">Baixo</option>
                         <option value="Médio">Médio</option>
                         <option value="Alto">Alto</option>

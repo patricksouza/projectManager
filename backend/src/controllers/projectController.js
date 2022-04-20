@@ -5,24 +5,15 @@ module.exports = {
     const data = await connection("project").select("*");
 
     var project = data.map((item, key, array) => {
-      let s_date = new Date(item.start_date);
-      var start_date =
-        s_date.getDate() +
-        "/" +
-        (s_date.getMonth() + 1) +
-        "/" +
-        s_date.getFullYear();
+      const s_date = new Date(item.start_date);
+      const start_date = s_date.toLocaleDateString("pt-br");
+      const start_date_unformated = s_date.toISOString().split('T')[0];
+      const f_date = new Date(item.finish_date);
+      const finish_date = f_date.toLocaleDateString("pt-br");
+      const finish_date_unformated = f_date.toISOString().split('T')[0];
 
-      let f_date = new Date(item.finish_date);
-      var finish_date =
-        f_date.getDate() +
-        "/" +
-        (f_date.getMonth() + 1) +
-        "/" +
-        f_date.getFullYear();
-
-      var project_risk = "";
-      var project_risk_perc = null;
+      let project_risk = "";
+      let project_risk_perc = null;
 
       switch (item.project_risk) {
         case 0:
@@ -42,7 +33,9 @@ module.exports = {
         id: item.id,
         name: item.name,
         start_date: start_date,
+        start_date_unformated: start_date_unformated,
         finish_date: finish_date,
+        finish_date_unformated: finish_date_unformated,
         budget: item.budget,
         project_risk: project_risk,
         project_risk_perc: project_risk_perc,

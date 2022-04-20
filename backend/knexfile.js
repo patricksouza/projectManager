@@ -5,8 +5,8 @@ module.exports = {
   development: {
     client: 'postgresql',
     connection: {
-      host: 'localhost',
-      user: 'postgres',
+      host: 'db', // 127.0.0.1
+      user: 'projectUser',
       password: 'root',
       database: 'project_db',
       timezone: 'UTC',

@@ -58,7 +58,7 @@ $ npm run migrate
 
 $ npm start
 
-## A api iniciará na porta:3333 - acesse <http://localhost:3333>
+## A api iniciará na porta:3334 - acesse <http://localhost:3334>
 
 
 ## Telas do projeto
