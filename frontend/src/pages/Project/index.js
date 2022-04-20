@@ -19,6 +19,17 @@ export default function Project() {
 
   const history = useHistory();
 
+  function handleDelete(e) {
+    e.preventDefault();
+    if (participants.length) {
+      setParticipants(participants.filter((item, index) => {
+        if (index !== e.target.tabIndex) {
+          return item;
+        }
+      }))
+    }
+  }
+
   async function handleNewProject(e) {
     e.preventDefault();
 
@@ -52,10 +63,10 @@ export default function Project() {
   return (
     <>
       <div>
-        <nav className="navbar navbar-light bg-light shadow">
+        <nav className="navbar navbar-light bg-light shadow-sm">
           <div className="row d-flex justify-content-between">
             <div className="col-10">
-             {/** <img
+              {/** <img
                 src={logo}
                 width="120"
                 className="d-inline-block align-top"
@@ -169,12 +180,17 @@ export default function Project() {
             {participants.length <= 0 ? (
               ""
             ) : (
-              <div className="col mb-3 py-4">
+              <div className="col mb-3">
+                <small className="form-text text-muted">
+                  Dê dois cliques para remover um participante.
+                </small>
                 <ul className="list-group">
                   {participants.map((item, key) => (
-                    <li className="list-group-item" key={key}>
-                      {item}
-                    </li>
+                    <span key={key}>
+                      <li className="list-group-item" onDoubleClick={handleDelete} tabIndex={key}>
+                        {item}
+                      </li>
+                    </span>
                   ))}
                 </ul>
               </div>

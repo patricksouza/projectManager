@@ -208,7 +208,7 @@ export default function Home() {
   return (
     <>
       <div>
-        <nav className="navbar shadow">
+      <nav className="navbar navbar-light bg-light shadow-sm">
           <div className="row d-flex justify-content-between">
             <div className="col-10">
               {/** 
@@ -239,7 +239,7 @@ export default function Home() {
       </div>
       <div className="container py-2">
         <div className="table-responsive-lg">
-          <table className="table shadow text-center">
+          <table className="table shadow-sm text-center">
             <thead>
               <tr>
                 <th scope="col">Projeto</th>
@@ -259,7 +259,7 @@ export default function Home() {
                       <input
                         className="form-control"
                         type="text"
-                        value={newName === "" ? item.name : ""}
+                        value={newName}
                         onChange={(e) => setNewName(e.target.value)}
                         required={true}
                       />
@@ -272,7 +272,7 @@ export default function Home() {
                       <input
                         className="form-control"
                         type="date"
-                        value={item.start_date_unformated}
+                        value={newFinishDate}
                         onChange={(e) => setNewStartDate(e.target.value)}
                         required={true}
                       />
@@ -285,7 +285,7 @@ export default function Home() {
                       <input
                         className="form-control"
                         type="date"
-                        value="2022-04-28"
+                        value={newFinishDate}
                         onChange={(e) => setNewFinishDate(e.target.value)}
                         required={true}
                       />
@@ -299,7 +299,7 @@ export default function Home() {
                         className="form-control"
                         type="number"
                         min={0}
-                        value={newBudget === "" ? item.budget : newBudget}
+                        value={newBudget}
                         onChange={(e) => setNewBudget(e.target.value)}
                         required={true}
                       />
@@ -316,7 +316,7 @@ export default function Home() {
                       <select
                         className="form-control"
                         type="text"
-                        value={item.project_risk}
+                        value={newProjectRisk}
                         onChange={(e) => setNewProjectRisk(e.target.value)}
                         required={true}
                       >
@@ -388,7 +388,7 @@ export default function Home() {
                                         newProjectRisk === ""
                                           ? item.project_risk
                                           : newProjectRisk,
-                                      participants: newParticipants,
+                                      participants: newParticipants.length === 0 ? item.participants: newParticipants,
                                     })
                                   }
                                 >

@@ -6,10 +6,10 @@ module.exports = {
 
     var project = data.map((item, key, array) => {
       const s_date = new Date(item.start_date);
-      const start_date = s_date.toLocaleDateString("pt-br");
+      const start_date = s_date.toLocaleDateString();
       const start_date_unformated = s_date.toISOString().split('T')[0];
       const f_date = new Date(item.finish_date);
-      const finish_date = f_date.toLocaleDateString("pt-br");
+      const finish_date = f_date.toLocaleDateString();
       const finish_date_unformated = f_date.toISOString().split('T')[0];
 
       let project_risk = "";
